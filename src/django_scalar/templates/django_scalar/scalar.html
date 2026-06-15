@@ -13,7 +13,9 @@
         padding: 0;
       }
     </style>
-    <link rel="stylesheet" href="{% static 'css/scalar.css' %}" />
+    {% if CSS_URL %}
+    <link rel="stylesheet" href="{{ CSS_URL }}" />
+    {% endif %}
   </head>
   <body>
     <noscript>Scalar requires Javascript to function. Please enable it to browse the documentation.</noscript>

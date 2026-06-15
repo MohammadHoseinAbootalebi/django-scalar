@@ -48,6 +48,18 @@ class ScalarSettings:
             self.PREFIX + "JS_URL",
             "https://cdn.jsdelivr.net/npm/@scalar/api-reference",
         )
+        
+    @property
+    def CSS_URL(self) -> str | None:
+        """
+        URL to the Scalar CSS stylesheet.
+        Defaults to None (Scalar will use its internal styles).
+        """
+        return getattr(
+            settings,
+            self.PREFIX + "CSS_URL",
+            None,
+        )
 
     @property
     def PROXY_URL(self) -> str:
@@ -87,6 +99,7 @@ _KNOWN_SETTINGS_ATTRS = {
     "TITLE",
     "THEME",
     "JS_URL",
+    "CSS_URL",
     "PROXY_URL",
     "FAVICON_URL",
     # Add any future setting property names here
