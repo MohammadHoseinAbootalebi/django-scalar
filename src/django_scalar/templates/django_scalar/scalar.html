@@ -1,12 +1,15 @@
 {% load static %}
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <title>{{ title }}</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" href="{{ scalar_favicon_url }}" />
+
+    <link href="{{ scalar_icons_package }}" rel="stylesheet" />
+
     <style>
       body {
         margin: 0;
@@ -18,18 +21,42 @@
     {% endif %}
   </head>
   <body>
-    <noscript>Scalar requires Javascript to function. Please enable it to browse the documentation.</noscript>
-    <script id="api-reference"
-            data-url="{{ openapi_url }}"
-            data-proxy-url="{{ scalar_proxy_url }}"></script>
+    <noscript
+      >Scalar requires Javascript to function. Please enable it to browse the
+      documentation.</noscript
+    >
+    <script
+      id="api-reference"
+      data-url="{{ openapi_url }}"
+      data-proxy-url="{{ scalar_proxy_url }}"
+    ></script>
     {% if theme %}
-      <script>
-        var configuration = {
-          theme: '{{ theme }}',
-        };
-        document.getElementById('api-reference').dataset.configuration = JSON.stringify(configuration);
-      </script>
+    <script>
+      var configuration = {
+        theme: "{{ theme }}",
+      };
+      document.getElementById("api-reference").dataset.configuration =
+        JSON.stringify(configuration);
+    </script>
     {% endif %}
     <script src="{{ scalar_js_url }}"></script>
+
+    <script>
+      // Define your Scalar configuration
+      var scalarConfig = {
+        // Other configurations like theme, spec URL, etc.
+        spec: {
+          url: "/api/schema/", // Your SCALAR_OPENAPI_URL
+        },
+        // Map your OpenAPI tags to Remix Icon names
+        customIconMapping: {
+          "Store": "shopping-cart-2-line",
+        },
+      };
+
+      // Mount the configuration to the Scalar element
+      document.getElementById("api-reference").dataset.configuration =
+        JSON.stringify(scalarConfig);
+    </script>
   </body>
 </html>

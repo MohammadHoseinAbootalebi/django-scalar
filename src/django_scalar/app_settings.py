@@ -76,6 +76,18 @@ class ScalarSettings:
         Defaults to '/static/favicon.ico'.
         """
         return getattr(settings, self.PREFIX + "FAVICON_URL", "/static/favicon.ico")
+    
+    @property
+    def ICONS_PACKAGE(self) -> str | None:
+        """
+        URL to the Scalar CSS stylesheet.
+        Defaults to None (Scalar will use its internal styles).
+        """
+        return getattr(
+            settings,
+            self.PREFIX + "ICONS_PACKAGE",
+            None,
+        )
 
     # --- Example of how you could add more complex/dynamic settings ---
     # @property
@@ -102,6 +114,7 @@ _KNOWN_SETTINGS_ATTRS = {
     "CSS_URL",
     "PROXY_URL",
     "FAVICON_URL",
+    "ICONS_PACKAGE",
     # Add any future setting property names here
 }
 
